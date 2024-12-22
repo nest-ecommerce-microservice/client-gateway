@@ -10,7 +10,7 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
-import { ClientProxy } from '@nestjs/microservices';
+import { ClientProxy, RpcException } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';
 import { PaginationDto } from 'src/common';
 import { PRODUCT_SERVICE } from 'src/config';
@@ -34,7 +34,7 @@ export class ProductsController {
       );
       return products;
     } catch (error) {
-      throw new BadRequestException(error);
+      throw new RpcException(error);
     }
   }
 
@@ -46,7 +46,7 @@ export class ProductsController {
       );
       return product;
     } catch (error) {
-      throw new BadRequestException(error);
+      throw new RpcException(error);
     }
   }
 
